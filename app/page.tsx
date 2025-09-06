@@ -143,7 +143,7 @@ export default function WatchTube() {
         youtubeUrl: newVideo.youtubeUrl,
         embedUrl: newVideo.embedUrl,
       };
-      setUserVideos((prev) => [...prev, videoToAdd]);
+      setUserVideos((prev) => [videoToAdd, ...prev]);
       showSuccess(`Video "${newVideo.name}" added successfully!`);
     } catch (error) {
       showError("Failed to add video. Please try again.");
