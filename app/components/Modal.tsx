@@ -80,7 +80,7 @@ export default function Modal({
           </div>
 
           {/* Content */}
-          <div className="px-6 py-6">{children}</div>
+          <div className="p-4">{children}</div>
         </div>
       </div>
     </div>

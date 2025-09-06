@@ -12,7 +12,7 @@ export default function Header({ onAddVideoClick }: HeaderProps) {
         <div className="flex items-center justify-between h-10">
           <div className="flex items-center">
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-              <span className="text-blue-600 dark:text-blue-400">Watch</span>
+              <span className="text-blue-600 dark:text-blue-400">C</span>
               <span className="text-gray-900 dark:text-white">Tube</span>
             </h1>
           </div>

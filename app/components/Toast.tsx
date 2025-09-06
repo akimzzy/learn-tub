@@ -38,13 +38,13 @@ export default function Toast({
   const getToastStyles = () => {
     switch (type) {
       case "success":
-        return "bg-green-500/90 text-white border border-green-400/30";
+        return "bg-green-500 text-white border border-green-400/30";
       case "error":
-        return "bg-red-500/90 text-white border border-red-400/30";
+        return "bg-red-500 text-white border border-red-400/30";
       case "info":
-        return "bg-blue-500/90 text-white border border-blue-400/30";
+        return "bg-blue-500 text-white border border-blue-400/30";
       default:
-        return "bg-gray-500/90 text-white border border-gray-400/30";
+        return "bg-gray-500 text-white border border-gray-400/30";
     }
   };
 
@@ -53,10 +53,10 @@ export default function Toast({
   };
 
   return (
-    <div className="fixed top-6 right-6 z-50">
+    <div className="fixed top-6 right-6 z-50 text-sm">
       <div
         className={`
-          flex items-center space-x-3 px-5 py-4 shadow-2xl backdrop-blur-xl rounded-xl
+          flex items-center space-x-3 px-4 py-2.5 text-xs rounded-xl
           transform transition-medium
           ${
             isAnimating
@@ -77,12 +77,10 @@ export default function Toast({
             setIsAnimating(false);
             setTimeout(onClose, 300);
           }}
-          className="ml-2 hover:opacity-75 p-1 hover:bg-white/20"
+          className="ml-2 rounded-full! size-8 flex justify-center items-center"
           aria-label="Close notification"
           icon={<Icon type="close" size="sm" />}
-        >
-          {""}
-        </Button>
+        />
       </div>
     </div>
   );

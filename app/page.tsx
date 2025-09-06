@@ -61,61 +61,6 @@ const seedVideos: Video[] = [
     youtubeUrl: "https://www.youtube.com/watch?v=O6P86uwfdR0",
     embedUrl: "https://www.youtube.com/embed/O6P86uwfdR0",
   },
-  {
-    id: "seed-5",
-    title: "Node.js Express Tutorial",
-    duration: "Seed Video",
-    thumbnail: "https://img.youtube.com/vi/L72fhGm1tfE/maxresdefault.jpg",
-    videoUrl: "https://www.youtube.com/embed/L72fhGm1tfE",
-    name: "Node.js Express Tutorial",
-    description: "Build REST APIs with Node.js and Express.",
-    youtubeUrl: "https://www.youtube.com/watch?v=L72fhGm1tfE",
-    embedUrl: "https://www.youtube.com/embed/L72fhGm1tfE",
-  },
-  {
-    id: "seed-6",
-    title: "TypeScript for Beginners",
-    duration: "Seed Video",
-    thumbnail: "https://img.youtube.com/vi/BwuLxPH8IDs/maxresdefault.jpg",
-    videoUrl: "https://www.youtube.com/embed/BwuLxPH8IDs",
-    name: "TypeScript for Beginners",
-    description: "Learn TypeScript fundamentals and best practices.",
-    youtubeUrl: "https://www.youtube.com/watch?v=BwuLxPH8IDs",
-    embedUrl: "https://www.youtube.com/embed/BwuLxPH8IDs",
-  },
-  {
-    id: "seed-7",
-    title: "CSS Grid Layout",
-    duration: "Seed Video",
-    thumbnail: "https://img.youtube.com/vi/jV8B24rSN5o/maxresdefault.jpg",
-    videoUrl: "https://www.youtube.com/embed/jV8B24rSN5o",
-    name: "CSS Grid Layout",
-    description: "Master CSS Grid for modern web layouts.",
-    youtubeUrl: "https://www.youtube.com/watch?v=jV8B24rSN5o",
-    embedUrl: "https://www.youtube.com/embed/jV8B24rSN5o",
-  },
-  {
-    id: "seed-8",
-    title: "Python Django Tutorial",
-    duration: "Seed Video",
-    thumbnail: "https://img.youtube.com/vi/F5mRW0jo-U4/maxresdefault.jpg",
-    videoUrl: "https://www.youtube.com/embed/F5mRW0jo-U4",
-    name: "Python Django Tutorial",
-    description: "Build web applications with Django framework.",
-    youtubeUrl: "https://www.youtube.com/watch?v=F5mRW0jo-U4",
-    embedUrl: "https://www.youtube.com/embed/F5mRW0jo-U4",
-  },
-  {
-    id: "seed-9",
-    title: "MongoDB Crash Course",
-    duration: "Seed Video",
-    thumbnail: "https://img.youtube.com/vi/-56x56UppqQ/maxresdefault.jpg",
-    videoUrl: "https://www.youtube.com/embed/-56x56UppqQ",
-    name: "MongoDB Crash Course",
-    description: "Learn NoSQL database fundamentals with MongoDB.",
-    youtubeUrl: "https://www.youtube.com/watch?v=-56x56UppqQ",
-    embedUrl: "https://www.youtube.com/embed/-56x56UppqQ",
-  },
 ];
 
 export default function WatchTube() {
@@ -236,7 +181,7 @@ export default function WatchTube() {
       <Header onAddVideoClick={() => setIsModalOpen(true)} />
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 lg:px-8 pb-10">
+      <main className="max-w-7xl mx-auto px-3 lg:px-8 pb-10">
         {/* Tab Navigation */}
         <div className="mb-6">
           <div className="flex border-white/20">
