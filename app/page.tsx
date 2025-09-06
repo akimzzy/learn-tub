@@ -5,11 +5,12 @@ import VideoPlayer from "./components/VideoPlayer";
 import VideoForm from "./components/VideoForm";
 import VideoList from "./components/VideoList";
 import Toast from "./components/Toast";
-import DarkModeToggle from "./components/DarkModeToggle";
+
 import Modal from "./components/Modal";
 import Button from "./components/Button";
 import Card from "./components/Card";
 import Select from "./components/Select";
+import Header from "./components/Header";
 import { useToast } from "./hooks/useToast";
 import { Video } from "./types";
 import Image from "next/image";
@@ -232,47 +233,12 @@ export default function WatchTube() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900/95">
       {/* Header */}
-      <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-300/60 dark:border-gray-700/30 sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto py-5 px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-                <span className="text-blue-600 dark:text-blue-400">Watch</span>
-                <span className="text-gray-900 dark:text-white">Tube</span>
-              </h1>
-            </div>
-            <div className="flex items-center space-x-3">
-              <Button
-                variant="primary"
-                onClick={() => setIsModalOpen(true)}
-                icon={
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 4v16m8-8H4"
-                    />
-                  </svg>
-                }
-              >
-                Add Video
-              </Button>
-              <DarkModeToggle />
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header onAddVideoClick={() => setIsModalOpen(true)} />
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
+      <main className="max-w-7xl mx-auto px-6 lg:px-8 pb-10">
         {/* Tab Navigation */}
-        <div className="mb-8">
+        <div className="mb-6">
           <div className="flex border-white/20">
             <button
               onClick={() => setActiveTab("collections")}
@@ -301,11 +267,11 @@ export default function WatchTube() {
         {activeTab === "collections" && (
           <div>
             {/* Search and Sort Controls */}
-            <div className="mb-6 flex justify-end gap-4 text-xs">
+            <div className="mb-6 flex gap-4 text-xs">
               {/* Search Bar */}
-              <div className="">
+              <div className=" flex-1">
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-50">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-20">
                     <svg
                       className="size-4"
                       fill="currentColor"
@@ -329,7 +295,9 @@ export default function WatchTube() {
               <div className="">
                 <Select
                   value={sortBy}
-                  onChange={(value: string) => setSortBy(value as "recent" | "alphabetical")}
+                  onChange={(value: string) =>
+                    setSortBy(value as "recent" | "alphabetical")
+                  }
                   options={[
                     { value: "recent", label: "Most Recent" },
                     { value: "alphabetical", label: "Alphabetical (A-Z)" },
@@ -351,61 +319,64 @@ export default function WatchTube() {
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Video Player Section */}
             <div className="flex-1 lg:w-2/3">
-              <Card>
-                {/* Video Player */}
-                <VideoPlayer
-                  videoUrl={currentVideo.videoUrl}
-                  title={currentVideo.title}
-                />
-
+              {/* Sticky Video Player */}
+              <div className="sticky top-[100px] z-30 ">
+                <Card className="mb-4">
+                  <VideoPlayer
+                    videoUrl={currentVideo.videoUrl}
+                    title={currentVideo.title}
+                  />
+                </Card>
                 {/* Video Info */}
-                <div className="p-6">
-                  <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                    {currentVideo.title}
-                  </h2>
-                  <div className="flex items-center text-gray-600 dark:text-gray-400 mb-4 text-xs">
-                    <span className="">{currentVideo.duration}</span>
-                    <span className="mx-2">•</span>
-                    <span className="">1.2M views</span>
-                    <span className="mx-2">•</span>
-                    <span className="">2 days ago</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex space-x-3">
-                      <Button
-                        variant="primary"
-                        size="sm"
-                        icon={
-                          <svg
-                            className="w-5 h-5"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-                          </svg>
-                        }
-                      >
-                        Like
-                      </Button>
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        icon={
-                          <svg
-                            className="w-5 h-5"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
-                          </svg>
-                        }
-                      >
-                        Share
-                      </Button>
+                <Card>
+                  <div className="p-4">
+                    <h2 className="text-base font-bold text-gray-900 dark:text-white mb-1">
+                      {currentVideo.title}
+                    </h2>
+                    <div className="flex items-center text-gray-600 dark:text-gray-400 mb-4 text-xs">
+                      <span className="">{currentVideo.duration}</span>
+                      <span className="mx-2">•</span>
+                      <span className="">1.2M views</span>
+                      <span className="mx-2">•</span>
+                      <span className="">2 days ago</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex space-x-3">
+                        <Button
+                          variant="primary"
+                          size="sm"
+                          icon={
+                            <svg
+                              className="w-3.5 h-5"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                            >
+                              <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                            </svg>
+                          }
+                        >
+                          Like
+                        </Button>
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          icon={
+                            <svg
+                              className="w-3.5 h-3.5"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                            >
+                              <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+                            </svg>
+                          }
+                        >
+                          Share
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Card>
+                </Card>
+              </div>
             </div>
 
             {/* Video List Sidebar */}
